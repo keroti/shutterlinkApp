@@ -1,0 +1,124 @@
+{% extends 'base.html' %} {% block content %} {% load static%}
+<!-- ======= Mobile nav toggle button ======= -->
+<i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+
+<!-- ======= Header ======= -->
+<header id="header">
+    <div class="d-flex flex-column">
+        <nav id="navbar" class="nav-menu navbar">
+            <h1 class="text-light">
+                <a href="home">SHUTTER LINK</a>
+            </h1>
+            <ul>
+                <li>
+                    <a href="home" class="nav-link scrollto"
+                        ><i class="bx bx-home"></i> <span>Home</span></a
+                    >
+                </li>
+                <li>
+                    <a href="search" class="nav-link scrollto"
+                        ><i class="bi bi-search"></i>
+                        <span>Search</span></a
+                    >
+                </li>
+                {% if user.is_authenticated %}
+                <li>
+                    <a href="profile" class="nav-link scrollto"
+                        ><i class="bi bi-person-circle"></i>
+                        <span>Profile</span></a
+                    >
+                </li>
+                <li>
+                    <a href="logout" class="nav-link scrollto"
+                        ><i class="bi bi-person-check"></i>
+                        <span>Log Out</span></a
+                    >
+                </li>
+                {% else %}
+                <li>
+                    <a href="login" class="nav-link scrollto active"
+                        ><i class="bi bi-person-fill-lock"></i>
+                        <span>Log In</span></a
+                    >
+                </li>
+                <li>
+                    <a href="register" class="nav-link scrollto"
+                        ><i class="bi bi-person-fill-slash"></i>
+                        <span>Sign Up</span></a
+                    >
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+        <!-- .nav-menu -->
+    </div>
+</header>
+<!-- End Header -->
+<main id="main">
+    <section class="m-2">
+        <h1>
+            <center>LOG IN</center>
+        </h1>
+        {% for message in messages %}
+        <p
+            class="p-2 text-danger-emphasis bg-danger-subtle border border-danger-subtle rounded-3"
+        >
+            {{ message }}
+        </p>
+        {% endfor %}
+        <form action="login" method="POST" data-aos="fade-up">
+            {% csrf_token %}
+            <div class="row g-3 align-items-center p-3">
+                <div class="col-1">
+                    <label for="inputUsername" class="col-form-label"
+                        >Username:</label
+                    >
+                </div>
+                <div class="col-6 center">
+                    <input
+                        name="username"
+                        type="text"
+                        class="form-control"
+                        id="inputUsername"
+                        placeholder="Username"
+                    />
+                </div>
+            </div>
+            <div class="row g-3 align-items-center p-3">
+                <div class="col-1">
+                    <label for="inputPassword6" class="col-form-label"
+                        >Password:</label
+                    >
+                </div>
+                <div class="col-6">
+                    <input
+                        type="password"
+                        name="password"
+                        id="inputPassword6"
+                        class="form-control"
+                        placeholder="password"
+                        aria-describedby="passwordHelpInline"
+                    />
+                </div>
+            </div>
+            <button type="submit" class="btn btn-outline-success ms-3">
+                Sign in
+            </button>
+        </form>
+        <div class="m-1" data-aos="fade-up">
+            <p class="pt-5">
+                Already have an account?
+                <button type="button" class="btn btn-primary">
+                    <a
+                        href="register"
+                        class="link-light link-offset-2 link-underline-opacity-0"
+                        >Register</a
+                    >
+                </button>
+            </p>
+        </div>
+    </section>
+</main>
+<!-- End #main -->
+
+{% endblock %}

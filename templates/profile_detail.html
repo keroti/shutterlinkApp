@@ -1,0 +1,534 @@
+{% extends 'base.html' %} {% block content %} {% load static%}
+<!-- ======= Mobile nav toggle button ======= -->
+<i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+
+<!-- ======= Header ======= -->
+<header id="header">
+    <div class="d-flex flex-column">
+        <nav id="navbar" class="nav-menu navbar">
+            <h1 class="text-light">
+                <a href="home">SHUTTER LINK</a>
+            </h1>
+            <ul>
+                <li>
+                    <a href="home" class="nav-link scrollto"
+                        ><i class="bx bx-home"></i> <span>Home</span></a
+                    >
+                </li>
+                <li>
+                    <a href="search" class="nav-link scrollto active"
+                        ><i class="bi bi-search"></i>
+                        <span>Search</span></a
+                    >
+                </li>
+                {% if user.is_authenticated %}
+                <li>
+                    <a href="profile" class="nav-link scrollto"
+                        ><i class="bi bi-person-circle"></i>
+                        <span>Profile</span></a
+                    >
+                </li>
+                <li>
+                    <a href="logout" class="nav-link scrollto"
+                        ><i class="bi bi-person-check"></i>
+                        <span>Log Out</span></a
+                    >
+                </li>
+                {% else %}
+                <li>
+                    <a href="login" class="nav-link scrollto"
+                        ><i class="bi bi-person-fill-lock"></i>
+                        <span>Log In</span></a
+                    >
+                </li>
+                <li>
+                    <a href="register" class="nav-link scrollto"
+                        ><i class="bi bi-person-fill-slash"></i>
+                        <span>Sign Up</span></a
+                    >
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+        <!-- .nav-menu -->
+    </div>
+</header>
+<!-- End Header -->
+
+<!-- ======= Hero Section ======= -->
+<section
+    id="hero"
+    class="d-flex flex-column justify-content-center align-items-center"
+    style="
+        background: url('https://img.freepik.com/free-photo/full-shot-women-working-together_23-2150506115.jpg?w=996&t=st=1696308280~exp=1696308880~hmac=56074f4fe88826a3e25c9a41aeef178e864248ab72fd8c723e2f8a7f0ecf9921')
+            top center;
+        background-size: cover;
+        width: 100%;
+        height: 100vh;
+    "
+    data-aos="fade-down"
+>
+    <div class="hero-container" data-aos="fade-in">
+        <h1>{{profile.user}}</h1>
+        <h1>Check out my work</h1>
+        <br />
+        <p>
+            <span
+                class="typed"
+                data-typed-items="I'm a {{profile.occupation}}"
+            ></span>
+        </p>
+    </div>
+</section>
+<!-- End Hero -->
+
+<main id="main">
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>About</h2>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-4" data-aos="fade-right">
+                    <img
+                        src="{{profile.profile_pic.url}}"
+                        class="img-fluid"
+                        alt=""
+                    />
+                </div>
+                <div
+                    class="col-lg-8 pt-4 pt-lg-0 content"
+                    data-aos="fade-left"
+                >
+                    <h3>{{profile.occupation}}</h3>
+                    <p class="fst-italic">{{profile.bio}}</p>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <ul>
+                                <li>
+                                    <i class="bi bi-chevron-right"></i>
+                                    <strong>Birthday:</strong>
+                                    <span>{{profile.birth_date}}</span>
+                                </li>
+                                <li>
+                                    <i class="bi bi-chevron-right"></i>
+                                    <strong>Website:</strong>
+                                    <span
+                                        ><a
+                                            href="{{profile.website}}"
+                                            target="_blank"
+                                            class="text-info"
+                                            >{{profile.website}}</a
+                                        ></span
+                                    >
+                                </li>
+                                <li>
+                                    <i class="bi bi-chevron-right"></i>
+                                    <strong>Phone:</strong>
+                                    <span
+                                        >{{profile.contact_information}}</span
+                                    >
+                                </li>
+                                <li>
+                                    <i class="bi bi-chevron-right"></i>
+                                    <strong>City:</strong>
+                                    <span
+                                        >{{profile.city}},
+                                        {{profile.country}}</span
+                                    >
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-6">
+                            <ul>
+                                <li>
+                                    <i class="bi bi-chevron-right"></i>
+                                    <strong>Email:</strong>
+                                    <span>{{profile.email}}</span>
+                                </li>
+                                <li>
+                                    <i class="bi bi-chevron-right"></i>
+                                    <strong>Freelance:</strong>
+                                    <span>Available</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End About Section -->
+
+    <!-- ======= Portfolio Section ======= -->
+    <section id="portfolio" class="portfolio section-bg">
+        <div class="container">
+            <div class="section-title">
+                <h2>Portfolio</h2>
+                <p>Here are some of my recent works</p>
+            </div>
+
+            <div class="row" data-aos="fade-up">
+                <div class="col-lg-12 d-flex justify-content-center">
+                    <ul id="portfolio-flters">
+                        <li data-filter="*" class="filter-active">All</li>
+                        <li data-filter=".filter-app">App</li>
+                        <li data-filter=".filter-card">Card</li>
+                        <li data-filter=".filter-web">Web</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div
+                class="row portfolio-container"
+                data-aos="fade-up"
+                data-aos-delay="100"
+            >
+                <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+                    <div class="portfolio-wrap">
+                        <img
+                            src="{% static 'assets/img/portfolio/portfolio-1.jpg' %}"
+                            class="img-fluid"
+                            alt=""
+                        />
+                        <div class="portfolio-links">
+                            <a
+                                href="{% static 'assets/img/portfolio/portfolio-1.jpg' %}"
+                                data-gallery="portfolioGallery"
+                                class="portfolio-lightbox"
+                                title="App 1"
+                                ><i class="bx bx-plus"></i
+                            ></a>
+                            <a
+                                href="portfolio-details.html"
+                                title="More Details"
+                                ><i class="bx bx-link"></i
+                            ></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+                    <div class="portfolio-wrap">
+                        <img
+                            src="{% static 'assets/img/portfolio/portfolio-2.jpg' %}"
+                            class="img-fluid"
+                            alt=""
+                        />
+                        <div class="portfolio-links">
+                            <a
+                                href="{% static 'assets/img/portfolio/portfolio-2.jpg' %}"
+                                data-gallery="portfolioGallery"
+                                class="portfolio-lightbox"
+                                title="Web 3"
+                                ><i class="bx bx-plus"></i
+                            ></a>
+                            <a
+                                href="portfolio-details.html"
+                                title="More Details"
+                                ><i class="bx bx-link"></i
+                            ></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+                    <div class="portfolio-wrap">
+                        <img
+                            src="{% static 'assets/img/portfolio/portfolio-3.jpg' %}"
+                            class="img-fluid"
+                            alt=""
+                        />
+                        <div class="portfolio-links">
+                            <a
+                                href="{% static 'assets/img/portfolio/portfolio-3.jpg' %}"
+                                data-gallery="portfolioGallery"
+                                class="portfolio-lightbox"
+                                title="App 2"
+                                ><i class="bx bx-plus"></i
+                            ></a>
+                            <a
+                                href="portfolio-details.html"
+                                title="More Details"
+                                ><i class="bx bx-link"></i
+                            ></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+                    <div class="portfolio-wrap">
+                        <img
+                            src="{% static 'assets/img/portfolio/portfolio-4.jpg' %}"
+                            class="img-fluid"
+                            alt=""
+                        />
+                        <div class="portfolio-links">
+                            <a
+                                href="{% static 'assets/img/portfolio/portfolio-4.jpg' %}"
+                                data-gallery="portfolioGallery"
+                                class="portfolio-lightbox"
+                                title="Card 2"
+                                ><i class="bx bx-plus"></i
+                            ></a>
+                            <a
+                                href="portfolio-details.html"
+                                title="More Details"
+                                ><i class="bx bx-link"></i
+                            ></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+                    <div class="portfolio-wrap">
+                        <img
+                            src="{% static 'assets/img/portfolio/portfolio-5.jpg' %}"
+                            class="img-fluid"
+                            alt=""
+                        />
+                        <div class="portfolio-links">
+                            <a
+                                href="{% static 'assets/img/portfolio/portfolio-5.jpg' %}"
+                                data-gallery="portfolioGallery"
+                                class="portfolio-lightbox"
+                                title="Web 2"
+                                ><i class="bx bx-plus"></i
+                            ></a>
+                            <a
+                                href="portfolio-details.html"
+                                title="More Details"
+                                ><i class="bx bx-link"></i
+                            ></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+                    <div class="portfolio-wrap">
+                        <img
+                            src="{% static 'assets/img/portfolio/portfolio-6.jpg' %}"
+                            class="img-fluid"
+                            alt=""
+                        />
+                        <div class="portfolio-links">
+                            <a
+                                href="{% static 'assets/img/portfolio/portfolio-6.jpg' %}"
+                                data-gallery="portfolioGallery"
+                                class="portfolio-lightbox"
+                                title="App 3"
+                                ><i class="bx bx-plus"></i
+                            ></a>
+                            <a
+                                href="portfolio-details.html"
+                                title="More Details"
+                                ><i class="bx bx-link"></i
+                            ></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+                    <div class="portfolio-wrap">
+                        <img
+                            src="{% static 'assets/img/portfolio/portfolio-7.jpg' %}"
+                            class="img-fluid"
+                            alt=""
+                        />
+                        <div class="portfolio-links">
+                            <a
+                                href="{% static 'assets/img/portfolio/portfolio-7.jpg' %}"
+                                data-gallery="portfolioGallery"
+                                class="portfolio-lightbox"
+                                title="Card 1"
+                                ><i class="bx bx-plus"></i
+                            ></a>
+                            <a
+                                href="portfolio-details.html"
+                                title="More Details"
+                                ><i class="bx bx-link"></i
+                            ></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+                    <div class="portfolio-wrap">
+                        <img
+                            src="{% static 'assets/img/portfolio/portfolio-8.jpg' %}"
+                            class="img-fluid"
+                            alt=""
+                        />
+                        <div class="portfolio-links">
+                            <a
+                                href="{% static 'assets/img/portfolio/portfolio-8.jpg' %}"
+                                data-gallery="portfolioGallery"
+                                class="portfolio-lightbox"
+                                title="Card 3"
+                                ><i class="bx bx-plus"></i
+                            ></a>
+                            <a
+                                href="portfolio-details.html"
+                                title="More Details"
+                                ><i class="bx bx-link"></i
+                            ></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+                    <div class="portfolio-wrap">
+                        <img
+                            src="{% static 'assets/img/portfolio/portfolio-9.jpg' %}"
+                            class="img-fluid"
+                            alt=""
+                        />
+                        <div class="portfolio-links">
+                            <a
+                                href="{% static 'assets/img/portfolio/portfolio-9.jpg' %}"
+                                data-gallery="portfolioGallery"
+                                class="portfolio-lightbox"
+                                title="Web 3"
+                                ><i class="bx bx-plus"></i
+                            ></a>
+                            <a
+                                href="portfolio-details.html"
+                                title="More Details"
+                                ><i class="bx bx-link"></i
+                            ></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Portfolio Section -->
+
+    <!-- ======= Services Section ======= -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Services</h2>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up">
+                    <div class="icon">
+                        <i class="bi bi-briefcase"></i>
+                    </div>
+                    <h4 class="title">
+                        {{profile.service_name}}
+                    </h4>
+                    <p class="description">{{profile.service_details}}</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Services Section -->
+
+    <!-- ======= Contact Section ======= -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact</h2>
+            </div>
+            <div class="row" data-aos="fade-in">
+                <div class="col-lg-5 d-flex align-items-stretch">
+                    <div class="info">
+                        <div class="address">
+                            <i class="bi bi-geo-alt"></i>
+                            <h4>Location:</h4>
+                            <p>{{profile.city}}, {{profile.country}}</p>
+                        </div>
+
+                        <div class="email">
+                            <i class="bi bi-envelope"></i>
+                            <h4>Email:</h4>
+                            <p>{{profile.email}}</p>
+                        </div>
+
+                        <div class="phone">
+                            <i class="bi bi-phone"></i>
+                            <h4>Call:</h4>
+                            <p>{{profile.contact_information}}</p>
+                        </div>
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d255282.32335424496!2d36.84739685!3d-1.3032089500000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f1172d84d49a7%3A0xf7cf0254b297924c!2sNairobi!5e0!3m2!1sen!2ske!4v1694603209930!5m2!1sen!2ske"
+                            frameborder="0"
+                            style="border: 0; width: 100%; height: 290px"
+                            allowfullscreen
+                        ></iframe>
+                    </div>
+                </div>
+
+                <div
+                    class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch"
+                >
+                    <form
+                        action="forms/contact.php"
+                        method="post"
+                        role="form"
+                        class="php-email-form"
+                    >
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="name">Your Name</label>
+                                <input
+                                    type="text"
+                                    name="name"
+                                    class="form-control"
+                                    id="name"
+                                    required
+                                />
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="name">Your Email</label>
+                                <input
+                                    type="email"
+                                    class="form-control"
+                                    name="email"
+                                    id="email"
+                                    required
+                                />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="name">Subject</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                name="subject"
+                                id="subject"
+                                required
+                            />
+                        </div>
+                        <div class="form-group">
+                            <label for="name">Message</label>
+                            <textarea
+                                class="form-control"
+                                name="message"
+                                rows="10"
+                                required
+                            ></textarea>
+                        </div>
+                        <div class="my-3">
+                            <div class="loading">Loading</div>
+                            <div class="error-message"></div>
+                            <div class="sent-message">
+                                Your message has been sent. Thank you!
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit">Send Message</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Contact Section -->
+</main>
+<!-- End #main -->
+
+{% endblock %}

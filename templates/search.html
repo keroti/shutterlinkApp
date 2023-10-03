@@ -1,0 +1,120 @@
+{% extends 'base.html' %} {% block content %} {% load static%}
+<!-- ======= Mobile nav toggle button ======= -->
+<i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+
+<!-- ======= Header ======= -->
+<header id="header">
+    <div class="d-flex flex-column">
+        <nav id="navbar" class="nav-menu navbar">
+            <h1 class="text-light">
+                <a href="home">SHUTTER LINK</a>
+            </h1>
+            <ul>
+                <li>
+                    <a href="home" class="nav-link scrollto"
+                        ><i class="bx bx-home"></i> <span>Home</span></a
+                    >
+                </li>
+                <li>
+                    <a href="search" class="nav-link scrollto active"
+                        ><i class="bi bi-search"></i>
+                        <span>Search</span></a
+                    >
+                </li>
+                {% if user.is_authenticated %}
+                <li>
+                    <a href="profile" class="nav-link scrollto"
+                        ><i class="bi bi-person-circle"></i>
+                        <span>Profile</span></a
+                    >
+                </li>
+                <li>
+                    <a href="logout" class="nav-link scrollto"
+                        ><i class="bi bi-person-check"></i>
+                        <span>Log Out</span></a
+                    >
+                </li>
+                {% else %}
+                <li>
+                    <a href="login" class="nav-link scrollto"
+                        ><i class="bi bi-person-fill-lock"></i>
+                        <span>Log In</span></a
+                    >
+                </li>
+                <li>
+                    <a href="register" class="nav-link scrollto"
+                        ><i class="bi bi-person-fill-slash"></i>
+                        <span>Sign Up</span></a
+                    >
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+        <!-- .nav-menu -->
+    </div>
+</header>
+<!-- End Header -->
+
+<div class="container mt-5 pt-3">
+    <center>
+        <h1>Search Results</h1>
+    </center>
+
+    <!-- Search Form -->
+    <form method="GET" action="{% url 'search' %}">
+        <div class="input-group mb-3">
+            <input
+                type="text"
+                name="q"
+                class="form-control"
+                placeholder="Search for users..."
+            />
+            <div class="input-group-append">
+                <button type="submit" class="btn btn-primary">
+                    Search
+                </button>
+            </div>
+        </div>
+    </form>
+
+    <!-- Display Search Results -->
+    {% if search_results %}
+    <h2>Search Results for "{{ query }}"</h2>
+    <div class="row">
+        {% for profile in search_results %}
+        <div class="col-lg-3 col-6" data-aos="fade-in">
+            <a href="{% url 'profile_detail' profile.name %}">
+                <div id="card" class="card m-2">
+                    <img
+                        src="{{profile.profile_pic.url}}"
+                        class="card-img-top"
+                        height="300px"
+                        alt="profile_pic"
+                    />
+                    <div class="card-body">
+                        <h5 class="card-title text-dark">
+                            {{ profile.name }}
+                        </h5>
+                        <p class="card-text text-dark">
+                            {{ profile.occupation }}
+                        </p>
+                        <a
+                            href="{% url 'profile_detail' profile.name %}"
+                            class="btn btn-dark"
+                            >Profile
+                            <i class="bi bi-box-arrow-in-right"></i
+                        ></a>
+                    </div>
+                </div>
+            </a>
+        </div>
+        {% if forloop.counter|divisibleby:4 and not forloop.last %}
+    </div>
+    <div class="row">{% endif %} {% endfor %}</div>
+    {% elif query == "" %}
+    <p>No search query entered.</p>
+    {% else %}
+    <p>No results found for "{{ query }}".</p>
+    {% endif %}
+</div>
+{% endblock %}
