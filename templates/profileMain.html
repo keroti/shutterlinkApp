@@ -62,8 +62,8 @@
     <!-- ======= Header ======= -->
     <header id="header">
       <div class="d-flex flex-column">
-        {% if user.is_authenticated %} {% for update_profile in
-        update_profiles %}
+        {% if user.is_authenticated %}
+        {% for update_profile in update_profiles %}
         <div class="profile">
           <img
             src="{{update_profile.profile_pic.url}}"
@@ -159,7 +159,7 @@
       id="hero"
       class="d-flex flex-column justify-content-center align-items-center"
       style="
-        background: url('https://img.freepik.com/free-photo/arrangement-professional-photographer-equipment_23-2149033291.jpg?w=996&t=st=1696281378~exp=1696281978~hmac=d12aeaec483ec3fe31b2821083a2b0f374efb848551c538b7dc7f7a09066643d')
+        background: url('../static/assets/img/background/back1.jpg')
           top center;
         background-size: cover;
         width: 100%;
@@ -175,8 +175,8 @@
         <h1>Check out my work</h1>
         {% endif %}
         <br />
-        {% if user.is_authenticated %} {% for update_profile in
-        update_profiles %}
+        {% if user.is_authenticated %}
+        {% for update_profile in update_profiles %}
         <p>
           <span
             class="typed"
@@ -198,8 +198,8 @@
 
     <main id="main">
       <!-- ======= About Section ======= -->
-      {% if user.is_authenticated %} {% for update_profile in
-      update_profiles %}
+      {% if user.is_authenticated %}
+      {% for update_profile in update_profiles %}
       <section id="about" class="about">
         <div class="container">
           <div class="section-title">
@@ -527,8 +527,8 @@
       <!-- End Services Section -->
 
       <!-- ======= Contact Section ======= -->
-      {% if user.is_authenticated %} {% for update_profile in
-      update_profiles %}
+      {% if user.is_authenticated %}
+      {% for update_profile in update_profiles %}
       <section id="contact" class="contact">
         <div class="container">
           <div class="section-title">
