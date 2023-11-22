@@ -25,7 +25,6 @@ class PhotographerProfile(models.Model):
     service_name = models.CharField(max_length=255)
     bio = models.TextField(blank=True)
     service_details = models.TextField()
-    brief_description = models.TextField()
     profile_pic = models.ImageField(upload_to='profile_pic/', null=True, blank=True)
 
     def __str__(self):

@@ -82,9 +82,9 @@ def login_view(request):
         return render(request, 'login.html')
 
 
-def logout(request):
+def logout_view(request):
     auth.logout(request)
-    return redirect('/')
+    return redirect('login')
 
 
 class CreateOrUpdatePhotographerProfileView(LoginRequiredMixin, UpdateView):

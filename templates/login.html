@@ -102,11 +102,16 @@
                 </div>
             </div>
             <button type="submit" class="btn btn-outline-success ms-3">
-                Sign in
+                Sign In
+            </button>
+            <br>
+            {% load socialaccount %}
+            <button type="submit" class="btn btn-primary m-3 mt-5">
+                <a href="{% provider_login_url 'google' %}?next=/" class="link-light link-offset-2 link-underline-opacity-0">Login with Google</a>
             </button>
         </form>
         <div class="m-1" data-aos="fade-up">
-            <p class="pt-5">
+            <p class="mt-3">
                 Already have an account?
                 <button type="button" class="btn btn-primary">
                     <a
