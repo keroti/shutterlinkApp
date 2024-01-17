@@ -10,8 +10,6 @@ from django.urls import reverse
 from .models import Services, PhotographerProfile
 
 
-
-
 # Create your views here.
 def index(request):
     return render(request, 'index.html')
